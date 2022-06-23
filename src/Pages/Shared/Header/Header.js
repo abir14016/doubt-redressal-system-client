@@ -2,6 +2,7 @@ import React from 'react';
 import { Container, Nav, Navbar } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import logo from '../../../images/logo.png';
+import CustomLink from '../CustomLink/CustomLink';
 
 const Header = () => {
     return (
@@ -13,9 +14,9 @@ const Header = () => {
                 <Navbar.Toggle aria-controls="responsive-navbar-nav" />
                 <Navbar.Collapse id="responsive-navbar-nav">
                     <Nav className="me-auto">
-                        <Nav.Link className='fw-bold' as={Link} to="home">Home</Nav.Link>
-                        <Nav.Link className='fw-bold' as={Link} to="raisedoubt">Raise Doubt</Nav.Link>
-                        <Nav.Link className='fw-bold' as={Link} to="solvedoubts">Solve Doubts</Nav.Link>
+                        <CustomLink className='fw-bold text-dark nav-link' as={Link} to="home">Home</CustomLink>
+                        <CustomLink className='fw-bold text-dark nav-link' as={Link} to="raisedoubt">Raise Doubt</CustomLink>
+                        <CustomLink className='fw-bold text-dark nav-link' as={Link} to="solvedoubts">Solve Doubts</CustomLink>
                     </Nav>
                     <Nav>
                         <Nav.Link eventKey={2} href="#memes">
