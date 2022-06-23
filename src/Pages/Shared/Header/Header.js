@@ -19,9 +19,9 @@ const Header = () => {
                         <CustomLink className='fw-bold text-dark nav-link' as={Link} to="solvedoubts">Solve Doubts</CustomLink>
                     </Nav>
                     <Nav>
-                        <Nav.Link eventKey={2} href="#memes">
+                        <Link className='nav-link' to="login">
                             <button className='btn btn-primary'>Login</button>
-                        </Nav.Link>
+                        </Link>
                     </Nav>
                 </Navbar.Collapse>
             </Container>

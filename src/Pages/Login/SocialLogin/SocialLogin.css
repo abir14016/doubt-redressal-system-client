@@ -1,0 +1,10 @@
+.social-logo-container {
+  border: 1px solid gray;
+  border-radius: 20px;
+  width: 50%;
+  margin: 0 auto;
+}
+.social-button:hover {
+  transform: scale(1.2);
+  transition: 0.2s ease-in-out;
+}
