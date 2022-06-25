@@ -7,12 +7,12 @@ import auth from '../../../firebase.init';
 
 const SocialLogin = () => {
     const [signInWithGoogle, googleUser, googleLoading, googleError] = useSignInWithGoogle(auth);
-    const [signInWithGithub, githubUser, githubLoading, gitubError] = useSignInWithGithub(auth);
+    const [signInWithGithub, githubUser, githubLoading, githubError] = useSignInWithGithub(auth);
     if (googleUser || githubUser) {
         console.log(googleUser || githubUser);
     }
-    if (googleError || gitubError) {
-        console.log(googleError || gitubError)
+    if (googleError || githubError) {
+        console.log(googleError || githubError)
     }
     return (
         <div>
@@ -39,6 +39,9 @@ const SocialLogin = () => {
                     (googleLoading || githubLoading) && <h6 className='text-center text-warning fw-bold small-text pt-1'>Loading...</h6>
                 }
             </div>
+            {
+                (googleError || githubError) && <h6 className='text-danger small-text text-center fw-bold'>Error: {googleError?.message || githubError?.message}</h6>
+            }
         </div>
     );
 };
