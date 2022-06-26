@@ -1,11 +1,15 @@
 import React from 'react';
 import PageTitle from '../Shared/PageTitle/PageTitle';
+import Doubts from './Doubts';
 
 const Home = () => {
     return (
         <div>
             <PageTitle title="Home"></PageTitle>
-            <h2>This is home page</h2>
+            <div className='container mt-3'>
+                <h2>Home</h2>
+                <Doubts></Doubts>
+            </div>
         </div>
     );
 };

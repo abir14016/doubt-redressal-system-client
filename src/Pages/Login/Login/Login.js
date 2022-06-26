@@ -18,10 +18,6 @@ const Login = () => {
         emailError,
     ] = useSignInWithEmailAndPassword(auth);
 
-    // let enailLoadingElement;
-    // if (emailLoading) {
-    //     return <Loading></Loading>
-    // }
     const onSubmit = data => {
         console.log(data);
         signInWithEmailAndPassword(data.email, data.password);

@@ -1,0 +1,31 @@
+.doubt-container {
+  background-color: #c5cfd8;
+  border: 2px solid gray;
+  margin-bottom: 10%;
+}
+.resolved-button {
+  background-color: #9dd5cf;
+  border: 2px solid #57ada3;
+  font-weight: 600;
+}
+.custom-hr {
+  border: 1px solid gray;
+}
+.comment-container {
+  background-color: #e0e6ec;
+  border: 2px solid gray;
+}
+.add-a-comment-input {
+  display: block;
+  width: 90%;
+  border: 2px solid gray;
+  border-radius: 5px;
+}
+.comment-button {
+  color: #0e5997;
+  border: 2px solid gray;
+  font-weight: 600;
+}
+.comment-button:hover {
+  background-color: #9dd5cf;
+}
