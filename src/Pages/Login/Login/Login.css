@@ -1,6 +1,7 @@
 .form-container {
   width: 50%;
-  border-radius: 10px;
+  border: 2px solid gray;
+  background-color: #c5cfd8;
 }
 @media only screen and (max-width: 576px) {
   .form-container {

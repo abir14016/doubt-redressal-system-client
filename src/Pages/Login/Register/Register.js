@@ -36,6 +36,7 @@ const Register = () => {
                         <Form.Group className="mb-3" controlId="formBasicName">
                             <Form.Label className='fw-bold'>Name</Form.Label>
                             <Form.Control
+                                className='input-field'
                                 type="text"
                                 placeholder="Your Name"
                                 autoComplete='off'
@@ -54,6 +55,7 @@ const Register = () => {
                         <Form.Group className="mb-3" controlId="formBasicEmail">
                             <Form.Label className='fw-bold'>Email address</Form.Label>
                             <Form.Control
+                                className='input-field'
                                 type="email"
                                 placeholder="Enter email"
                                 autoComplete='off'
@@ -80,6 +82,7 @@ const Register = () => {
                         <Form.Group className="mb-3" controlId="formBasicPassword">
                             <Form.Label className='fw-bold'>Password</Form.Label>
                             <Form.Control
+                                className='input-field'
                                 type="password"
                                 placeholder="Password"
                                 autoComplete='off'
@@ -114,6 +117,7 @@ const Register = () => {
                         <Form.Group className="mb-3" controlId="formBasicPhoto">
                             <Form.Label className='fw-bold'>Photo URL</Form.Label>
                             <Form.Control
+                                className='input-field'
                                 type="text"
                                 placeholder="Your Photo URL"
                                 autoComplete='off'

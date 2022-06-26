@@ -1,5 +1,5 @@
 import React from 'react';
-import { Button, Form } from 'react-bootstrap';
+import { Form } from 'react-bootstrap';
 import { useForm } from "react-hook-form";
 import './Doubt.css';
 
@@ -16,7 +16,7 @@ const Doubt = ({ doubt }) => {
                     <button className='px-5 resolved-button'>Resolved</button>
                 </div>
                 <h6>{doubt.details}</h6>
-                <p className='text-end small-text fw-bold'><small>Asked By: John Doe On Aug 8, 7:37</small></p>
+                <p className='text-end small-text fw-bold'><small>Asked By: {doubt.poster} On {doubt.postMoment}</small></p>
             </div>
 
             <hr className='custom-hr' />

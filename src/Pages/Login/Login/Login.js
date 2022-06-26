@@ -32,6 +32,7 @@ const Login = () => {
                         <Form.Group className="mb-3" controlId="formBasicEmail">
                             <Form.Label className='fw-bold'>Email address</Form.Label>
                             <Form.Control
+                                className='input-field'
                                 type="email"
                                 placeholder="Enter email"
                                 autoComplete='off'
@@ -58,6 +59,7 @@ const Login = () => {
                         <Form.Group className="mb-3" controlId="formBasicPassword">
                             <Form.Label className='fw-bold'>Password</Form.Label>
                             <Form.Control
+                                className='input-field'
                                 type="password"
                                 placeholder="Password"
                                 autoComplete='off'
