@@ -7,6 +7,7 @@ import Register from './Pages/Login/Register/Register';
 import RaiseDoubt from './Pages/RaiseDoubt/RaiseDoubt';
 import Header from './Pages/Shared/Header/Header';
 import NotFound from './Pages/Shared/NotFound/NotFound';
+import RequireAuth from './Pages/Shared/RequireAuth/RequireAuth';
 import SolveDoubts from './Pages/SolveDoubts/SolveDoubts';
 function App() {
   return (
@@ -15,8 +16,12 @@ function App() {
       <Routes>
         <Route path='/' element={<Home></Home>}></Route>
         <Route path='/home' element={<Home></Home>}></Route>
-        <Route path='/raisedoubt' element={<RaiseDoubt></RaiseDoubt>}></Route>
-        <Route path='solvedoubts' element={<SolveDoubts></SolveDoubts>}></Route>
+        <Route path='/raisedoubt' element={<RequireAuth>
+          <RaiseDoubt></RaiseDoubt>
+        </RequireAuth>}></Route>
+        <Route path='solvedoubts' element={<RequireAuth>
+          <SolveDoubts></SolveDoubts>
+        </RequireAuth>}></Route>
         <Route path='/login' element={<Login></Login>}></Route>
         <Route path='/register' element={<Register></Register>}></Route>
         <Route path='*' element={<NotFound></NotFound>}></Route>

@@ -1,6 +1,6 @@
 import React from 'react';
 import { Button, Form } from 'react-bootstrap';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import PageTitle from '../../Shared/PageTitle/PageTitle';
 import SocialLogin from '../SocialLogin/SocialLogin';
 import { useForm } from "react-hook-form";
@@ -9,6 +9,7 @@ import auth from '../../../firebase.init';
 import Loading from '../../Shared/Loading/Loading';
 
 const Register = () => {
+    const navigate = useNavigate();
     const { register, formState: { errors }, handleSubmit } = useForm();
     const [
         createUserWithEmailAndPassword,
@@ -19,7 +20,7 @@ const Register = () => {
     const [updateProfile] = useUpdateProfile(auth);
 
     if (emailUser) {
-        console.log(emailUser)
+        navigate('/');
     }
     const onSubmit = async (data) => {
         console.log(data);
@@ -148,7 +149,7 @@ const Register = () => {
                             </Button>
                         </div>
                     </Form>
-                    <SocialLogin></SocialLogin>
+                    {/* <SocialLogin></SocialLogin> */}
                 </div>
             </div>
         </div>
