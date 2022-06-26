@@ -1,12 +1,39 @@
-import React from 'react';
+import axios from 'axios';
 import { Form } from 'react-bootstrap';
+import { useAuthState } from 'react-firebase-hooks/auth';
 import { useForm } from "react-hook-form";
+import { useQuery } from 'react-query';
+import { toast } from 'react-toastify';
+import auth from '../../firebase.init';
+import UseComments from '../../Hooks/UseComments';
+import Loading from '../Shared/Loading/Loading';
+import Comments from './Comments';
 import './Doubt.css';
 
 const Doubt = ({ doubt }) => {
+    // const [comments, setComments] = UseComments(doubt._id);
+
+
+    const [user] = useAuthState(auth);
     const { register, formState: { errors }, handleSubmit } = useForm();
     const onSubmit = data => {
-        console.log(data);
+        data.commenter = user.displayName;
+        data.postId = doubt._id;
+        axios.post(`http://localhost:5000/comment`, data)
+            .then(response => {
+                const { data } = response;
+                if (data.insertedId) {
+                    toast.success("comment successfull");
+                    refetch();
+                }
+            })
+    }
+
+    const { data: comments, isLoading, refetch } = useQuery(['postId', doubt._id], () => fetch(`http://localhost:5000/comment/${doubt._id}`, {
+        method: 'GET',
+    }).then(res => res.json()))
+    if (isLoading) {
+        return <Loading></Loading>
     }
     return (
         <div className='doubt-container'>
@@ -22,10 +49,16 @@ const Doubt = ({ doubt }) => {
             <hr className='custom-hr' />
 
             <div className='px-3'>
-                <p className='fw-bold'><small>2 comments</small></p>
-                <div className='comment-container p-2'>
-                    <p className='fw-bold'><small>Abir: Make an api then try</small></p>
-                </div>
+                {
+                    comments?.length ? <p className='fw-bold'><small>{comments?.length} comments</small></p> : <p className='fw-bold'><small>0 comment</small></p>
+                }
+                {
+                    comments.map(comment => <Comments
+                        key={comment._id}
+                        comment={comment}
+                        comments={comments}
+                    ></Comments>)
+                }
                 <div className='my-3'>
                     <Form onSubmit={handleSubmit(onSubmit)} className='d-flex justify-content-between'>
                         <Form.Group className="add-a-comment-input" controlId="formBasicComment">
@@ -52,3 +85,6 @@ const Doubt = ({ doubt }) => {
 };
 
 export default Doubt;
+
+
+//62b863c315b17205141c8764
