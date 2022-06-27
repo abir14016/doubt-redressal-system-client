@@ -9,6 +9,7 @@ import Header from './Pages/Shared/Header/Header';
 import NotFound from './Pages/Shared/NotFound/NotFound';
 import RequireAuth from './Pages/Shared/RequireAuth/RequireAuth';
 import SolveDoubts from './Pages/SolveDoubts/SolveDoubts';
+import SolveSingleDoubt from './Pages/SolveSingleDoubt/SolveSingleDoubt';
 function App() {
   return (
     <div>
@@ -22,6 +23,7 @@ function App() {
         <Route path='solvedoubts' element={<RequireAuth>
           <SolveDoubts></SolveDoubts>
         </RequireAuth>}></Route>
+        <Route path='doubt/:doubtId' element={<SolveSingleDoubt></SolveSingleDoubt>}></Route>
         <Route path='/login' element={<Login></Login>}></Route>
         <Route path='/register' element={<Register></Register>}></Route>
         <Route path='*' element={<NotFound></NotFound>}></Route>

@@ -4,13 +4,14 @@ import Doubt from './Doubt';
 
 const Doubts = () => {
     const [doubts, setDoubts] = UseDoubts();
+    const reversedDoubt = [...doubts].reverse();
 
     return (
         <div>
             <p className='text-end fw-bold'><small>doubts: {doubts.length}</small></p>
             <>
                 {
-                    doubts.map(doubt => <Doubt
+                    reversedDoubt.map(doubt => <Doubt
                         key={doubt._id}
                         doubt={doubt}
                     ></Doubt>)

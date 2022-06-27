@@ -40,7 +40,9 @@ const Doubt = ({ doubt }) => {
             <div className='p-3'>
                 <div className='d-flex justify-content-between mb-3'>
                     <h5>{doubt.title}</h5>
-                    <button className='px-5 resolved-button'>Resolved</button>
+                    {
+                        doubt.solver && <button className='px-5 resolved-button'>Resolved</button>
+                    }
                 </div>
                 <h6>{doubt.details}</h6>
                 <p className='text-end small-text fw-bold'><small>Asked By: {doubt.poster} On {doubt.postMoment}</small></p>
@@ -48,9 +50,18 @@ const Doubt = ({ doubt }) => {
 
             <hr className='custom-hr' />
 
+            <div>
+                {
+                    doubt.solver && <div className='px-3'>
+                        <p>Answer: {doubt.solution} <br />
+                            <span className='small-text fw-bold'>Answered By {doubt.solver} on {doubt.solveMoment}</span></p>
+                    </div>
+                }
+            </div>
+
             <div className='px-3'>
                 {
-                    comments?.length ? <p className='fw-bold'><small>{comments?.length} comments</small></p> : <p className='fw-bold'><small>0 comment</small></p>
+                    comments?.length > 1 ? <p className='fw-bold'><small>{comments?.length} comments</small></p> : <p className='fw-bold'><small>{comments?.length} comment</small></p>
                 }
                 {
                     comments.map(comment => <Comments

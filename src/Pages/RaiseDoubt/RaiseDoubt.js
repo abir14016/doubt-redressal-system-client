@@ -19,7 +19,8 @@ const RaiseDoubt = () => {
         data.email = user.email
         data.poster = user.displayName;
         data.postMoment = postMoment;
-        console.log(data);
+        data.solution = "";
+        // console.log(data);
         axios.post(`http://localhost:5000/doubt`, data)
             .then(response => {
                 const { data } = response;
