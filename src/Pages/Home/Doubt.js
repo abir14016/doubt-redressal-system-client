@@ -41,7 +41,7 @@ const Doubt = ({ doubt }) => {
                 <div className='d-flex justify-content-between mb-3'>
                     <h5>{doubt.title}</h5>
                     {
-                        doubt.solver && <button className='px-5 resolved-button'>Resolved</button>
+                        doubt.solver && <div className='px-5 resolved-button'>Resolved</div>
                     }
                 </div>
                 <h6>{doubt.details}</h6>

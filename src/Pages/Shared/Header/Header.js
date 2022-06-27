@@ -24,12 +24,12 @@ const Header = () => {
     }
 
     const popover = (
-        <Popover className='border-border-2' id="popover-basic">
+        <Popover className='border-border-2' style={{ width: 220 }} id="popover-basic">
             <div className='m-1 border border-2'>
                 <Popover.Header className='text-center' as="h3">{userElement.name}</Popover.Header>
                 <Popover.Body>
                     <div className='text-center'>
-                        <img style={{ width: 60 }} className='rounded-circle' src={userElement.image} alt="" />
+                        <img style={{ width: 60, height: 60 }} className='rounded-circle' src={userElement.image} alt="" />
                         <p className='text-secondary text-center'>{userElement.email}</p>
                     </div>
                     <div className='d-flex justify-content-center align-items-center'>
@@ -45,7 +45,7 @@ const Header = () => {
         </Popover>
     );
     return (
-        <Navbar collapseOnSelect expand="lg" bg='light' variant="light">
+        <Navbar collapseOnSelect expand="lg" bg='light' variant="light" sticky='top'>
             <Container>
                 <Navbar.Brand as={Link} to="home">
                     <img src={logo} height="50" alt="logo" />

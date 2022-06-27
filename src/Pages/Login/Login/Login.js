@@ -32,9 +32,6 @@ const Login = () => {
     if (googleUser || githubUser || emailUser) {
         navigate(from, { replace: true });
     }
-    if (googleError || githubError) {
-        console.log(googleError || githubError)
-    }
 
     const onSubmit = data => {
         console.log(data);
