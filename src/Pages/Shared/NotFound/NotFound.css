@@ -1,0 +1,42 @@
+.not-found {
+  background-image: url("https://www.lego.com/_build/public/bg-emmet-c0e6973100929a1561fd388c5026c9e7.jpg");
+  background-repeat: no-repeat;
+  width: 100%;
+}
+.notfound-img img {
+  max-width: 100%;
+  height: auto;
+  margin-top: 10px;
+}
+.back-btn {
+  border: none;
+  border-radius: 8px;
+  padding: 10px 70px;
+  background-color: #ff7a59;
+  color: white;
+  font-family: "Courier New", Courier, monospace;
+  font-weight: bold;
+}
+.back-btn:hover {
+  background-color: #fd481b;
+  color: white;
+}
+.font-size {
+  font-size: 200px;
+}
+
+@media only screen and (max-width: 600px) {
+  .notfound-img img {
+    max-width: 100%;
+    height: auto;
+    margin-top: 5px;
+  }
+  .not-found-title {
+    text-align: center;
+    font-size: medium;
+    margin-bottom: 5px;
+  }
+  .font-size {
+    font-size: 40px;
+  }
+}

@@ -12,6 +12,7 @@ import logOutImage from '../../../images/utilities/logout-logo.png';
 import './Header.css';
 import UseTeacher from '../../../Hooks/UseTeacher';
 import UseStudent from '../../../Hooks/UseStudent';
+import UseUsers from '../../../Hooks/UseUsers';
 
 const Header = () => {
     const [user] = useAuthState(auth);
@@ -19,6 +20,13 @@ const Header = () => {
     const [student] = UseStudent(user);
     const handleLogOut = () => {
         signOut(auth);
+    }
+
+    const [users] = UseUsers();
+
+    if (user) {
+        const loggedInUser = users.find(loggedInUser => loggedInUser.email === user?.email);
+        console.log(loggedInUser?.role);
     }
 
     const userElement = {
@@ -42,7 +50,15 @@ const Header = () => {
                     </div>
                     <div className='d-flex justify-content-center align-items-center'>
                         <img style={{ width: 20, height: 20 }} src={dashboardImage} alt="" />
-                        <h6 className='text-muted ms-2' style={{ cursor: "pointer" }} >dashboard</h6>
+                        {
+                            teacher && <h6 className='text-muted ms-2' style={{ cursor: "pointer" }} >role: teacher</h6>
+                        }
+                        {
+                            student && <h6 className='text-muted ms-2' style={{ cursor: "pointer" }} >role: student</h6>
+                        }
+                        {
+                            (!teacher && !student) && <Link to='/updaterole' className='text-muted ms-2' style={{ cursor: "pointer" }} >update role</Link>
+                        }
                     </div>
                 </Popover.Body>
             </div>
@@ -59,16 +75,16 @@ const Header = () => {
                     <Nav className="me-auto">
                         <CustomLink className='fw-bold text-dark nav-link' as={Link} to="home">Home</CustomLink>
                         {
-                            student && <span className='nav-link fw-bold'>|</span>
+                            (student || !user) && <span className='nav-link fw-bold d-none d-md-none d-lg-inline'>|</span>
                         }
                         {
-                            student && <CustomLink className='fw-bold text-dark nav-link' as={Link} to="raisedoubt">Raise Doubt</CustomLink>
+                            (student || !user) && <CustomLink className='fw-bold text-dark nav-link' as={Link} to="raisedoubt">Raise Doubt</CustomLink>
                         }
                         {
-                            teacher && <span className='nav-link fw-bold'>|</span>
+                            (teacher || !user) && <span className='nav-link fw-bold d-none d-md-none d-lg-inline'>|</span>
                         }
                         {
-                            teacher && <CustomLink className='fw-bold text-dark nav-link' as={Link} to="solvedoubts">Solve Doubts</CustomLink>
+                            (teacher || !user) && <CustomLink className='fw-bold text-dark nav-link' as={Link} to="solvedoubts">Solve Doubts</CustomLink>
                         }
                     </Nav>
                     <Nav>
