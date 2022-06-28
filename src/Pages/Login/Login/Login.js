@@ -2,8 +2,7 @@ import React from 'react';
 import { Button, Form } from 'react-bootstrap';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import PageTitle from '../../Shared/PageTitle/PageTitle';
-// import SocialLogin from '../SocialLogin/SocialLogin';
-import { useSignInWithGithub, useSignInWithGoogle } from 'react-firebase-hooks/auth';
+import { useAuthState, useSignInWithGithub, useSignInWithGoogle } from 'react-firebase-hooks/auth';
 import { useForm } from "react-hook-form";
 import { useSignInWithEmailAndPassword } from 'react-firebase-hooks/auth';
 import './Login.css';
@@ -12,8 +11,14 @@ import Loading from '../../Shared/Loading/Loading';
 import google from '../../../images/social/google-logo.png';
 import github from '../../../images/social/github-logo.png';
 import '../SocialLogin/SocialLogin.css';
+import UseUser from '../../../Hooks/UseUser';
+import UseToken from '../../../Hooks/UseToken';
+import UseUsers from '../../../Hooks/UseUsers';
 
 const Login = () => {
+    const [loggedInUser] = useAuthState(auth);
+    const [users] = UseUsers();
+    // console.log(users?.length);
     const { register, formState: { errors }, handleSubmit } = useForm();
     const [
         signInWithEmailAndPassword,
@@ -23,20 +28,34 @@ const Login = () => {
     ] = useSignInWithEmailAndPassword(auth);
 
 
+
     const [signInWithGoogle, googleUser, googleLoading, googleError] = useSignInWithGoogle(auth);
     const [signInWithGithub, githubUser, githubLoading, githubError] = useSignInWithGithub(auth);
+
+    const [token] = UseToken(googleUser || githubUser || emailUser);
 
     const navigate = useNavigate();
     const location = useLocation();
     let from = location.state?.from?.pathname || "/";
-    if (googleUser || githubUser || emailUser) {
-        navigate(from, { replace: true });
+
+    if (loggedInUser) {
+        const selectedUser = users.find(user => user.email === loggedInUser?.email);
+        if (selectedUser?.role) {
+            navigate(from, { replace: true });
+        }
+        if (!selectedUser?.role) {
+            navigate('/updaterole');
+        }
+    }
+
+    if (token) {
+        // navigate(from, { replace: true });
     }
 
     const onSubmit = data => {
-        console.log(data);
         signInWithEmailAndPassword(data.email, data.password);
     };
+
     return (
         <div>
             <PageTitle title="Login"></PageTitle>

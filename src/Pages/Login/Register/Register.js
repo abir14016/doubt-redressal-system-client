@@ -1,8 +1,7 @@
 import React from 'react';
-import { Button, Form, FormSelect } from 'react-bootstrap';
+import { Button, Form } from 'react-bootstrap';
 import { Link, useNavigate } from 'react-router-dom';
 import PageTitle from '../../Shared/PageTitle/PageTitle';
-import SocialLogin from '../SocialLogin/SocialLogin';
 import { useForm } from "react-hook-form";
 import { useCreateUserWithEmailAndPassword, useUpdateProfile } from 'react-firebase-hooks/auth';
 import auth from '../../../firebase.init';

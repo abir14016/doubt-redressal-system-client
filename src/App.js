@@ -4,6 +4,8 @@ import './App.css';
 import Home from './Pages/Home/Home';
 import Login from './Pages/Login/Login/Login';
 import Register from './Pages/Login/Register/Register';
+import RequireStudent from './Pages/Login/RequireStudent/RequireStudent';
+import RequireTeacher from './Pages/Login/RequireTeacher/RequireTeacher';
 import UpdateRole from './Pages/Login/UpdateRole/UpdateRole';
 import RaiseDoubt from './Pages/RaiseDoubt/RaiseDoubt';
 import Header from './Pages/Shared/Header/Header';
@@ -19,10 +21,14 @@ function App() {
         <Route path='/' element={<Home></Home>}></Route>
         <Route path='/home' element={<Home></Home>}></Route>
         <Route path='/raisedoubt' element={<RequireAuth>
-          <RaiseDoubt></RaiseDoubt>
+          <RequireStudent>
+            <RaiseDoubt></RaiseDoubt>
+          </RequireStudent>
         </RequireAuth>}></Route>
         <Route path='solvedoubts' element={<RequireAuth>
-          <SolveDoubts></SolveDoubts>
+          <RequireTeacher>
+            <SolveDoubts></SolveDoubts>
+          </RequireTeacher>
         </RequireAuth>}></Route>
         <Route path='doubt/:doubtId' element={<SolveSingleDoubt></SolveSingleDoubt>}></Route>
         <Route path='/login' element={<Login></Login>}></Route>

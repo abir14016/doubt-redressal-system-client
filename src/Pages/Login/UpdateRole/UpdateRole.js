@@ -28,7 +28,7 @@ const UpdateRole = () => {
                 }
 
             })
-        console.log(data);
+        // console.log(data);
     };
     return (
         <div className='container mt-5'>
