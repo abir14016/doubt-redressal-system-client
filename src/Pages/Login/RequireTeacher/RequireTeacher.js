@@ -9,9 +9,9 @@ import Loading from '../../Shared/Loading/Loading';
 
 const RequireTeacher = ({ children }) => {
     const [user, loading] = useAuthState(auth);
-    const [teacher, adminLoading] = UseTeacher(user);
+    const [teacher, teacherLoading] = UseTeacher(user);
     const location = useLocation();
-    if (loading || adminLoading) {
+    if (loading || teacherLoading) {
         return <Loading></Loading>
     }
     if (!user || !teacher) {

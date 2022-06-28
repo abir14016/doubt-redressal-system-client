@@ -10,9 +10,13 @@ import userImage from '../../../images/utilities/user-logo.png';
 import dashboardImage from '../../../images/utilities/dashboard-logo.jpg';
 import logOutImage from '../../../images/utilities/logout-logo.png';
 import './Header.css';
+import UseTeacher from '../../../Hooks/UseTeacher';
+import UseStudent from '../../../Hooks/UseStudent';
 
 const Header = () => {
     const [user] = useAuthState(auth);
+    const [teacher] = UseTeacher(user);
+    const [student] = UseStudent(user);
     const handleLogOut = () => {
         signOut(auth);
     }
@@ -54,10 +58,18 @@ const Header = () => {
                 <Navbar.Collapse id="responsive-navbar-nav">
                     <Nav className="me-auto">
                         <CustomLink className='fw-bold text-dark nav-link' as={Link} to="home">Home</CustomLink>
-                        <span className='nav-link fw-bold'>|</span>
-                        <CustomLink className='fw-bold text-dark nav-link' as={Link} to="raisedoubt">Raise Doubt</CustomLink>
-                        <span className='nav-link fw-bold'>|</span>
-                        <CustomLink className='fw-bold text-dark nav-link' as={Link} to="solvedoubts">Solve Doubts</CustomLink>
+                        {
+                            student && <span className='nav-link fw-bold'>|</span>
+                        }
+                        {
+                            student && <CustomLink className='fw-bold text-dark nav-link' as={Link} to="raisedoubt">Raise Doubt</CustomLink>
+                        }
+                        {
+                            teacher && <span className='nav-link fw-bold'>|</span>
+                        }
+                        {
+                            teacher && <CustomLink className='fw-bold text-dark nav-link' as={Link} to="solvedoubts">Solve Doubts</CustomLink>
+                        }
                     </Nav>
                     <Nav>
                         {
