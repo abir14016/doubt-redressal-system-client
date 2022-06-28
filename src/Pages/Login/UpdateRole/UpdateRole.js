@@ -1,10 +1,33 @@
 import React from 'react';
 import { Button, Form } from 'react-bootstrap';
 import { useForm } from "react-hook-form";
+import { useAuthState } from 'react-firebase-hooks/auth';
+import auth from '../../../firebase.init';
+import { toast } from 'react-toastify';
+import { useNavigate } from 'react-router-dom';
 
 const UpdateRole = () => {
     const { register, formState: { errors }, handleSubmit } = useForm();
+    const [user] = useAuthState(auth);
+    const navigate = useNavigate();
     const onSubmit = async (data) => {
+        const url = `http://localhost:5000/user/${user.email}`;
+        fetch(url, {
+            method: "PUT",
+            headers: {
+                'content-type': 'application/json'
+            },
+            body: JSON.stringify(data)
+        })
+            .then(res => res.json())
+            .then(data => {
+                console.log(data);
+                if (data.result.modifiedCount) {
+                    navigate('/')
+                    toast.success("Role updated Successfully")
+                }
+
+            })
         console.log(data);
     };
     return (

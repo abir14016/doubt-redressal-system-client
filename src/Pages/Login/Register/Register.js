@@ -3,10 +3,11 @@ import { Button, Form, FormSelect } from 'react-bootstrap';
 import { Link, useNavigate } from 'react-router-dom';
 import PageTitle from '../../Shared/PageTitle/PageTitle';
 import SocialLogin from '../SocialLogin/SocialLogin';
-import { useFieldArray, useForm } from "react-hook-form";
+import { useForm } from "react-hook-form";
 import { useCreateUserWithEmailAndPassword, useUpdateProfile } from 'react-firebase-hooks/auth';
 import auth from '../../../firebase.init';
 import Loading from '../../Shared/Loading/Loading';
+import UseToken from '../../../Hooks/UseToken';
 
 const Register = () => {
     const navigate = useNavigate();
@@ -18,8 +19,9 @@ const Register = () => {
         emailError,
     ] = useCreateUserWithEmailAndPassword(auth);
     const [updateProfile] = useUpdateProfile(auth);
+    const [token] = UseToken(emailUser);
 
-    if (emailUser) {
+    if (token) {
         navigate('/updaterole');
     }
     const onSubmit = async (data) => {
