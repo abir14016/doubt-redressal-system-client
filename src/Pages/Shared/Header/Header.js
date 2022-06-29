@@ -17,6 +17,7 @@ const Header = () => {
     const [user] = useAuthState(auth);
     const [teacher] = UseTeacher(user);
     const [student] = UseStudent(user);
+
     const handleLogOut = () => {
         signOut(auth);
     }

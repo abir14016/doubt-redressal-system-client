@@ -26,7 +26,7 @@ const Doubt = ({ doubt }) => {
                     toast.success("comment successfull");
                     refetch();
                 }
-            })
+            });
     }
 
     const { data: comments, isLoading, refetch } = useQuery(['postId', doubt._id], () => fetch(`http://localhost:5000/comment/${doubt._id}`, {
@@ -70,26 +70,28 @@ const Doubt = ({ doubt }) => {
                         comments={comments}
                     ></Comments>)
                 }
-                <div className='my-3'>
-                    <Form onSubmit={handleSubmit(onSubmit)} className='d-flex justify-content-between'>
-                        <Form.Group className="add-a-comment-input" controlId="formBasicComment">
-                            <Form.Control
-                                type="text"
-                                placeholder="Add a comment"
-                                {...register("comment", {
-                                    required: {
-                                        value: true,
-                                        message: 'plz add a valid comment'
-                                    }
-                                })}
-                            />
-                        </Form.Group>
-                        <input className='comment-button px-3' type="submit" value="Comment" />
-                    </Form>
-                    {errors.comment?.type === 'required' && <Form.Text className="text-danger small-text fw-bold">
-                        {errors.comment.message}
-                    </Form.Text>}
-                </div>
+                {
+                    user && <div className='my-3'>
+                        <Form onSubmit={handleSubmit(onSubmit)} className='d-flex justify-content-between'>
+                            <Form.Group className="add-a-comment-input" controlId="formBasicComment">
+                                <Form.Control
+                                    type="text"
+                                    placeholder="Add a comment"
+                                    {...register("comment", {
+                                        required: {
+                                            value: true,
+                                            message: 'plz add a valid comment'
+                                        }
+                                    })}
+                                />
+                            </Form.Group>
+                            <input className='comment-button px-3' type="submit" value="Comment" />
+                        </Form>
+                        {errors.comment?.type === 'required' && <Form.Text className="text-danger small-text fw-bold">
+                            {errors.comment.message}
+                        </Form.Text>}
+                    </div>
+                }
             </div>
         </div>
     );

@@ -7,6 +7,7 @@ import { useCreateUserWithEmailAndPassword, useUpdateProfile } from 'react-fireb
 import auth from '../../../firebase.init';
 import Loading from '../../Shared/Loading/Loading';
 import UseToken from '../../../Hooks/UseToken';
+import UseUsers from '../../../Hooks/UseUsers';
 
 const Register = () => {
     const navigate = useNavigate();
@@ -21,8 +22,8 @@ const Register = () => {
     const [updateProfile, updating] = useUpdateProfile(auth);
     const [token] = UseToken(emailUser);
 
-    if (updating) {
-        return <Loading></Loading>
+    if (emailUser) {
+        console.log(emailUser)
     }
 
     if (token) {
@@ -44,9 +45,9 @@ const Register = () => {
                     data.image = img;
                 }
             })
-        console.log(data);
         await createUserWithEmailAndPassword(data.email, data.password);
         await updateProfile({ displayName: data.name, photoURL: data.image });
+        await window.setTimeout(function () { window.location.reload() }, 500);
     };
 
     return (
@@ -176,7 +177,7 @@ const Register = () => {
                         <h6 className='fw-bold small-text'>Already have an account? <Link to="/login" className='text-decoration-none text-link'>Please Login</Link></h6>
 
                         {
-                            (emailLoading || updating) && <Loading></Loading>
+                            (emailLoading) && <Loading></Loading>
                         }
                         {
                             emailError && <h6 className='text-danger small-text fw-bold'>{emailError.message}</h6>

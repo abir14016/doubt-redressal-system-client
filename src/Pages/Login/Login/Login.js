@@ -2,7 +2,7 @@ import React from 'react';
 import { Button, Form } from 'react-bootstrap';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import PageTitle from '../../Shared/PageTitle/PageTitle';
-import { useAuthState, useSignInWithGithub, useSignInWithGoogle } from 'react-firebase-hooks/auth';
+import { useAuthState, useSendPasswordResetEmail, useSignInWithGithub, useSignInWithGoogle } from 'react-firebase-hooks/auth';
 import { useForm } from "react-hook-form";
 import { useSignInWithEmailAndPassword } from 'react-firebase-hooks/auth';
 import './Login.css';
@@ -54,7 +54,9 @@ const Login = () => {
 
     const onSubmit = data => {
         signInWithEmailAndPassword(data.email, data.password);
+
     };
+
 
     return (
         <div>
@@ -126,7 +128,6 @@ const Login = () => {
                         </Form.Group>
 
                         <h6 className='fw-bold small-text'>new to XetGo Solver? <Link to="/register" className='text-decoration-none text-link'>Please Register</Link></h6>
-                        <h6 className='fw-bold small-text'>Forgot password? <span className='text-decoration-none text-link' role="button">Reset Password</span></h6>
 
                         {
                             emailLoading && <Loading></Loading>

@@ -1,4 +1,6 @@
 import { useEffect, useState } from "react"
+import { useQuery } from "react-query";
+import Loading from "../Pages/Shared/Loading/Loading";
 
 const UseUsers = () => {
     const [users, setUsers] = useState({});
@@ -7,6 +9,7 @@ const UseUsers = () => {
             .then(res => res.json())
             .then(data => setUsers(data))
     }, []);
+
 
     return [users, setUsers];
 }

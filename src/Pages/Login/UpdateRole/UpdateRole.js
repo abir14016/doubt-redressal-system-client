@@ -24,11 +24,11 @@ const UpdateRole = () => {
                 console.log(data);
                 if (data.result.modifiedCount) {
                     navigate('/')
-                    toast.success("Role updated Successfully")
+                    toast.success("Role updated Successfully");
+                    window.setTimeout(function () { window.location.reload() }, 500);
                 }
 
             })
-        // console.log(data);
     };
     return (
         <div className='container mt-5'>
