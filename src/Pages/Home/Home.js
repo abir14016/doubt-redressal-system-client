@@ -2,12 +2,6 @@ import PageTitle from '../Shared/PageTitle/PageTitle';
 import Doubts from './Doubts';
 
 const Home = () => {
-    window.onload = function () {
-        if (!window.location.hash) {
-            window.location = window.location + '#loaded';
-            window.location.reload();
-        }
-    }
     return (
         <div>
             <PageTitle title="Home"></PageTitle>
