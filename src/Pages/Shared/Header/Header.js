@@ -65,7 +65,7 @@ const Header = () => {
                 <Navbar.Toggle aria-controls="responsive-navbar-nav" />
                 <Navbar.Collapse id="responsive-navbar-nav">
                     <Nav className="me-auto">
-                        <CustomLink className='fw-bold text-dark nav-link' as={Link} to="/">Home</CustomLink>
+                        <CustomLink className='fw-bold text-dark nav-link' as={Link} to="/home">Home</CustomLink>
                         {
                             (student || !user) && <span className='nav-link fw-bold d-none d-md-none d-lg-inline'>|</span>
                         }

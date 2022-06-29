@@ -1,4 +1,3 @@
-import { useLocation } from 'react-router-dom';
 import PageTitle from '../Shared/PageTitle/PageTitle';
 import Doubts from './Doubts';
 
