@@ -13,18 +13,18 @@ const RaiseDoubt = () => {
     const pattern = date.compile('MMM D, h:m A');
     const postMoment = date.format(new Date(), pattern);
     const [user] = useAuthState(auth);
-    const { register, formState: { errors }, handleSubmit } = useForm();
+    const { register, formState: { errors }, handleSubmit, reset } = useForm();
 
     const onSubmit = (data) => {
         data.email = user.email
         data.poster = user.displayName;
         data.postMoment = postMoment;
         data.solution = "";
-        // console.log(data);
         axios.post(`http://localhost:5000/doubt`, data)
             .then(response => {
                 const { data } = response;
                 if (data.insertedId) {
+                    reset();
                     toast.success("Doubet Raised");
                 }
             })

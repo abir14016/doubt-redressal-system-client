@@ -7,11 +7,10 @@ import { useCreateUserWithEmailAndPassword, useUpdateProfile } from 'react-fireb
 import auth from '../../../firebase.init';
 import Loading from '../../Shared/Loading/Loading';
 import UseToken from '../../../Hooks/UseToken';
-import UseUsers from '../../../Hooks/UseUsers';
 
 const Register = () => {
     const navigate = useNavigate();
-    const { register, formState: { errors }, handleSubmit } = useForm();
+    const { register, formState: { errors }, handleSubmit, reset } = useForm();
     const imageStorageKey = '14685597c68261357d28f7ae5a494a2d';
     const [
         createUserWithEmailAndPassword,
@@ -19,12 +18,9 @@ const Register = () => {
         emailLoading,
         emailError,
     ] = useCreateUserWithEmailAndPassword(auth);
-    const [updateProfile, updating] = useUpdateProfile(auth);
+    const [updateProfile] = useUpdateProfile(auth);
     const [token] = UseToken(emailUser);
 
-    if (emailUser) {
-        console.log(emailUser)
-    }
 
     if (token) {
         navigate('/updaterole');

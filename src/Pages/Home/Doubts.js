@@ -3,7 +3,7 @@ import UseDoubts from '../../Hooks/UseDoubts';
 import Doubt from './Doubt';
 
 const Doubts = () => {
-    const [doubts, setDoubts] = UseDoubts();
+    const [doubts] = UseDoubts();
     const reversedDoubt = [...doubts].reverse();
 
     return (

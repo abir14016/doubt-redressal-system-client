@@ -11,7 +11,7 @@ import date from 'date-and-time';
 import { toast } from 'react-toastify';
 
 const SolveSingleDoubt = () => {
-    const { register, formState: { errors }, handleSubmit } = useForm();
+    const { register, formState: { errors }, handleSubmit, reset } = useForm();
     const { doubtId } = useParams();
     const [doubt, setDoubt] = useState({});
     useEffect(() => {
@@ -40,7 +40,8 @@ const SolveSingleDoubt = () => {
             .then(res => res.json())
             .then(data => {
                 if (data.acknowledged) {
-                    toast.success("Answered Successfully")
+                    reset();
+                    toast.success("Answered Successfully");
                 }
 
             })

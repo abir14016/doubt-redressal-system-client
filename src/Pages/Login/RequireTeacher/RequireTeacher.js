@@ -15,7 +15,7 @@ const RequireTeacher = ({ children }) => {
         return <Loading></Loading>
     }
     if (!user || !teacher) {
-        // signOut(auth);
+        signOut(auth);
         return <Navigate to="/" state={{ from: location }} replace />;
     }
     return children;

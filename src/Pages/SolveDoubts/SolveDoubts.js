@@ -4,7 +4,7 @@ import PageTitle from '../Shared/PageTitle/PageTitle';
 import SolveDoubt from '../SolveDoubt/SolveDoubt';
 
 const SolveDoubts = () => {
-    const [doubts, setDoubts] = UseDoubts();
+    const [doubts] = UseDoubts();
     const unsolvedDoubts = doubts.filter(doubt => doubt.solution === '');
     return (
         <div className='container mt-5'>

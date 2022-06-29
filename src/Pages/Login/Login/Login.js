@@ -2,7 +2,7 @@ import React from 'react';
 import { Button, Form } from 'react-bootstrap';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import PageTitle from '../../Shared/PageTitle/PageTitle';
-import { useAuthState, useSendPasswordResetEmail, useSignInWithGithub, useSignInWithGoogle } from 'react-firebase-hooks/auth';
+import { useAuthState, useSignInWithGithub, useSignInWithGoogle } from 'react-firebase-hooks/auth';
 import { useForm } from "react-hook-form";
 import { useSignInWithEmailAndPassword } from 'react-firebase-hooks/auth';
 import './Login.css';
@@ -10,15 +10,12 @@ import auth from '../../../firebase.init';
 import Loading from '../../Shared/Loading/Loading';
 import google from '../../../images/social/google-logo.png';
 import github from '../../../images/social/github-logo.png';
-import '../SocialLogin/SocialLogin.css';
-import UseUser from '../../../Hooks/UseUser';
 import UseToken from '../../../Hooks/UseToken';
 import UseUsers from '../../../Hooks/UseUsers';
 
 const Login = () => {
     const [loggedInUser] = useAuthState(auth);
     const [users] = UseUsers();
-    // console.log(users?.length);
     const { register, formState: { errors }, handleSubmit } = useForm();
     const [
         signInWithEmailAndPassword,

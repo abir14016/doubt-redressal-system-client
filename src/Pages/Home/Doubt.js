@@ -5,17 +5,13 @@ import { useForm } from "react-hook-form";
 import { useQuery } from 'react-query';
 import { toast } from 'react-toastify';
 import auth from '../../firebase.init';
-import UseComments from '../../Hooks/UseComments';
 import Loading from '../Shared/Loading/Loading';
 import Comments from './Comments';
 import './Doubt.css';
 
 const Doubt = ({ doubt }) => {
-    // const [comments, setComments] = UseComments(doubt._id);
-
-
     const [user] = useAuthState(auth);
-    const { register, formState: { errors }, handleSubmit } = useForm();
+    const { register, formState: { errors }, handleSubmit, reset } = useForm();
     const onSubmit = data => {
         data.commenter = user.displayName;
         data.postId = doubt._id;
@@ -25,6 +21,7 @@ const Doubt = ({ doubt }) => {
                 if (data.insertedId) {
                     toast.success("comment successfull");
                     refetch();
+                    reset();
                 }
             });
     }
@@ -98,6 +95,3 @@ const Doubt = ({ doubt }) => {
 };
 
 export default Doubt;
-
-
-//62b863c315b17205141c8764
