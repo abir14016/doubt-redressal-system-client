@@ -1,4 +1,3 @@
-import { signOut } from 'firebase/auth';
 import React from 'react';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { Navigate, useLocation } from 'react-router-dom';
@@ -15,7 +14,7 @@ const RequireStudent = ({ children }) => {
         return <Loading></Loading>
     }
     if (!user || !student) {
-        signOut(auth);
+        // signOut(auth);
         return <Navigate to="/" state={{ from: location }} replace />;
     }
     return children;

@@ -10,7 +10,7 @@ import UseToken from '../../../Hooks/UseToken';
 
 const Register = () => {
     const navigate = useNavigate();
-    const { register, formState: { errors }, handleSubmit, reset } = useForm();
+    const { register, formState: { errors }, handleSubmit } = useForm();
     const imageStorageKey = '14685597c68261357d28f7ae5a494a2d';
     const [
         createUserWithEmailAndPassword,
@@ -20,9 +20,10 @@ const Register = () => {
     ] = useCreateUserWithEmailAndPassword(auth);
     const [updateProfile] = useUpdateProfile(auth);
     const [token] = UseToken(emailUser);
+    console.log(token);
 
 
-    if (token) {
+    if (emailUser) {
         navigate('/updaterole');
     }
     const onSubmit = async (data) => {
@@ -43,7 +44,7 @@ const Register = () => {
             })
         await createUserWithEmailAndPassword(data.email, data.password);
         await updateProfile({ displayName: data.name, photoURL: data.image });
-        await window.setTimeout(function () { window.location.reload() }, 500);
+        window.setTimeout(function () { window.location.reload() }, 500);
     };
 
     return (

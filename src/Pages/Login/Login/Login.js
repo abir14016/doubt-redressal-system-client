@@ -14,7 +14,7 @@ import UseToken from '../../../Hooks/UseToken';
 import UseUsers from '../../../Hooks/UseUsers';
 
 const Login = () => {
-    const [loggedInUser] = useAuthState(auth);
+    const [user] = useAuthState(auth);
     const [users] = UseUsers();
     const { register, formState: { errors }, handleSubmit } = useForm();
     const [
@@ -35,8 +35,8 @@ const Login = () => {
     const location = useLocation();
     let from = location.state?.from?.pathname || "/";
 
-    if (loggedInUser) {
-        const selectedUser = users.find(user => user.email === loggedInUser?.email);
+    if (user && users) {
+        const selectedUser = users?.find(loggedInUser => loggedInUser?.email === user.email);
         if (selectedUser?.role) {
             navigate(from, { replace: true });
         }
@@ -46,12 +46,11 @@ const Login = () => {
     }
 
     if (token) {
-        // navigate(from, { replace: true });
+        console.log(token);
     }
 
     const onSubmit = data => {
         signInWithEmailAndPassword(data.email, data.password);
-
     };
 
 
