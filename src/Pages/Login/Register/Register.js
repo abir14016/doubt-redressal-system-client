@@ -11,22 +11,42 @@ import UseToken from '../../../Hooks/UseToken';
 const Register = () => {
     const navigate = useNavigate();
     const { register, formState: { errors }, handleSubmit } = useForm();
+    const imageStorageKey = '14685597c68261357d28f7ae5a494a2d';
     const [
         createUserWithEmailAndPassword,
         emailUser,
         emailLoading,
         emailError,
     ] = useCreateUserWithEmailAndPassword(auth);
-    const [updateProfile] = useUpdateProfile(auth);
+    const [updateProfile, updating] = useUpdateProfile(auth);
     const [token] = UseToken(emailUser);
+
+    if (updating) {
+        return <Loading></Loading>
+    }
 
     if (token) {
         navigate('/updaterole');
     }
     const onSubmit = async (data) => {
+        const image = data.image[0];
+        const formData = new FormData();
+        formData.append('image', image);
+        const url = `https://api.imgbb.com/1/upload?key=${imageStorageKey}`
+        fetch(url, {
+            method: "POST",
+            body: formData
+        })
+            .then(res => res.json())
+            .then(result => {
+                if (result.success) {
+                    const img = result.data.url;
+                    data.image = img;
+                }
+            })
         console.log(data);
         await createUserWithEmailAndPassword(data.email, data.password);
-        await updateProfile({ displayName: data.name, photoURL: data.photo });
+        await updateProfile({ displayName: data.name, photoURL: data.image });
     };
 
     return (
@@ -117,7 +137,7 @@ const Register = () => {
                             </Form.Text>}
                         </Form.Group>
 
-                        <Form.Group className="mb-3" controlId="formBasicPhoto">
+                        {/* <Form.Group className="mb-3" controlId="formBasicPhoto">
                             <Form.Label className='fw-bold'>Photo URL</Form.Label>
                             <Form.Control
                                 className='input-field'
@@ -134,12 +154,29 @@ const Register = () => {
                             {errors.photo?.type === 'required' && <Form.Text className="text-danger fw-bold">
                                 {errors.name.message}
                             </Form.Text>}
+                        </Form.Group> */}
+
+                        <Form.Group className="mb-3" controlId="formBasicImage">
+                            <Form.Label className='fw-bold'>Photo</Form.Label>
+                            <Form.Control
+                                className='input-field'
+                                type="file"
+                                {...register("image", {
+                                    required: {
+                                        value: true,
+                                        message: 'image is required'
+                                    }
+                                })}
+                            />
+                            {errors.image?.type === 'required' && <Form.Text className="text-danger fw-bold">
+                                {errors.image.message}
+                            </Form.Text>}
                         </Form.Group>
 
                         <h6 className='fw-bold small-text'>Already have an account? <Link to="/login" className='text-decoration-none text-link'>Please Login</Link></h6>
 
                         {
-                            emailLoading && <Loading></Loading>
+                            (emailLoading || updating) && <Loading></Loading>
                         }
                         {
                             emailError && <h6 className='text-danger small-text fw-bold'>{emailError.message}</h6>

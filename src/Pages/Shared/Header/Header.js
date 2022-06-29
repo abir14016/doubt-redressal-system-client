@@ -12,7 +12,6 @@ import logOutImage from '../../../images/utilities/logout-logo.png';
 import './Header.css';
 import UseTeacher from '../../../Hooks/UseTeacher';
 import UseStudent from '../../../Hooks/UseStudent';
-import UseUsers from '../../../Hooks/UseUsers';
 
 const Header = () => {
     const [user] = useAuthState(auth);
@@ -20,13 +19,6 @@ const Header = () => {
     const [student] = UseStudent(user);
     const handleLogOut = () => {
         signOut(auth);
-    }
-
-    const [users] = UseUsers();
-
-    if (user) {
-        const loggedInUser = users.find(loggedInUser => loggedInUser.email === user?.email);
-        console.log(loggedInUser?.role);
     }
 
     const userElement = {
@@ -73,7 +65,7 @@ const Header = () => {
                 <Navbar.Toggle aria-controls="responsive-navbar-nav" />
                 <Navbar.Collapse id="responsive-navbar-nav">
                     <Nav className="me-auto">
-                        <CustomLink className='fw-bold text-dark nav-link' as={Link} to="home">Home</CustomLink>
+                        <CustomLink className='fw-bold text-dark nav-link' as={Link} to="/">Home</CustomLink>
                         {
                             (student || !user) && <span className='nav-link fw-bold d-none d-md-none d-lg-inline'>|</span>
                         }

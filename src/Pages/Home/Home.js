@@ -1,14 +1,14 @@
+import { useLocation } from 'react-router-dom';
 import PageTitle from '../Shared/PageTitle/PageTitle';
 import Doubts from './Doubts';
 
 const Home = () => {
-    // const [load, setLoad] = useState(false);
-    // window.onload = function pageLoad() {
-    //     if (load) {
-    //         window.location.reload(true);
-    //         setLoad(false);
-    //     }
-    // };
+    window.onload = function () {
+        if (!window.location.hash) {
+            window.location = window.location + '#loaded';
+            window.location.reload();
+        }
+    }
     return (
         <div>
             <PageTitle title="Home"></PageTitle>

@@ -8,7 +8,7 @@ const Doubts = () => {
 
     return (
         <div>
-            <p className='text-end fw-bold'><small>doubts: {doubts.length}</small></p>
+            <p className='text-end fw-bold my-0'><small>{doubts.length} doubts</small></p>
             <>
                 {
                     reversedDoubt.map(doubt => <Doubt
