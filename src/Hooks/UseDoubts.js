@@ -2,7 +2,7 @@ import { useEffect, useState } from "react"
 
 const UseDoubts = () => {
     const [doubts, setDoubts] = useState([]);
-    const url = 'http://localhost:5000/doubt';
+    const url = 'https://safe-mountain-18279.herokuapp.com/doubt';
     useEffect(() => {
         fetch(url)
             .then(res => res.json())

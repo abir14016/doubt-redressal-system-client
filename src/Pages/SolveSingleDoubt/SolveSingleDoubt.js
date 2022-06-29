@@ -15,7 +15,7 @@ const SolveSingleDoubt = () => {
     const { doubtId } = useParams();
     const [doubt, setDoubt] = useState({});
     useEffect(() => {
-        fetch(`http://localhost:5000/doubt/${doubtId}`)
+        fetch(`https://safe-mountain-18279.herokuapp.com/doubt/${doubtId}`)
             .then(res => res.json())
             .then(result => setDoubt(result))
     }, [doubtId]);
@@ -29,7 +29,7 @@ const SolveSingleDoubt = () => {
     const onSubmit = data => {
         data.solver = user.displayName;
         data.solveMoment = solveMoment;
-        const url = `http://localhost:5000/doubt/${doubtId}`;
+        const url = `https://safe-mountain-18279.herokuapp.com/doubt/${doubtId}`;
         fetch(url, {
             method: "PUT",
             headers: {

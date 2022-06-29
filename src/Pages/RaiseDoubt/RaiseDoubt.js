@@ -20,7 +20,7 @@ const RaiseDoubt = () => {
         data.poster = user.displayName;
         data.postMoment = postMoment;
         data.solution = "";
-        axios.post(`http://localhost:5000/doubt`, data)
+        axios.post(`https://safe-mountain-18279.herokuapp.com/doubt`, data)
             .then(response => {
                 const { data } = response;
                 if (data.insertedId) {

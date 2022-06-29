@@ -15,7 +15,7 @@ const Doubt = ({ doubt }) => {
     const onSubmit = data => {
         data.commenter = user.displayName;
         data.postId = doubt._id;
-        axios.post(`http://localhost:5000/comment`, data)
+        axios.post(`https://safe-mountain-18279.herokuapp.com/comment`, data)
             .then(response => {
                 const { data } = response;
                 if (data.insertedId) {
@@ -26,7 +26,7 @@ const Doubt = ({ doubt }) => {
             });
     }
 
-    const { data: comments, isLoading, refetch } = useQuery(['postId', doubt._id], () => fetch(`http://localhost:5000/comment/${doubt._id}`, {
+    const { data: comments, isLoading, refetch } = useQuery(['postId', doubt._id], () => fetch(`https://safe-mountain-18279.herokuapp.com/comment/${doubt._id}`, {
         method: 'GET',
     }).then(res => res.json()))
     if (isLoading) {

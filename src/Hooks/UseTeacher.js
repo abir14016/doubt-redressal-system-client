@@ -6,7 +6,7 @@ const UseTeacher = user => {
     useEffect(() => {
         const email = user?.email;
         if (email) {
-            fetch(`http://localhost:5000/teacher/${email}`, {
+            fetch(`https://safe-mountain-18279.herokuapp.com/teacher/${email}`, {
                 method: 'GET',
                 headers: {
                     'content-type': 'application/json',

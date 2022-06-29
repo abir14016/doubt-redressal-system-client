@@ -11,7 +11,7 @@ const UpdateRole = () => {
     const [user] = useAuthState(auth);
     const navigate = useNavigate();
     const onSubmit = async (data) => {
-        const url = `http://localhost:5000/user/${user.email}`;
+        const url = `https://safe-mountain-18279.herokuapp.com/user/${user.email}`;
         fetch(url, {
             method: "PUT",
             headers: {
@@ -21,7 +21,6 @@ const UpdateRole = () => {
         })
             .then(res => res.json())
             .then(data => {
-                console.log(data);
                 if (data.result.modifiedCount) {
                     navigate('/')
                     toast.success("Role updated Successfully");

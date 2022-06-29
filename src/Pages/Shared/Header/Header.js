@@ -63,6 +63,10 @@ const Header = () => {
                 <Navbar.Brand as={Link} to="home">
                     <img src={logo} height="50" alt="logo" />
                 </Navbar.Brand>
+
+                <Navbar.Brand as={Link} to="home">
+                    <h4>xetGo<span className='text-primary'>solver</span></h4>
+                </Navbar.Brand>
                 <Navbar.Toggle aria-controls="responsive-navbar-nav" />
                 <Navbar.Collapse id="responsive-navbar-nav">
                     <Nav className="me-auto">
