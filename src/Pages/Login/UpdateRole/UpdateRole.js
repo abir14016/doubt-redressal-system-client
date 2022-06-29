@@ -21,7 +21,6 @@ const UpdateRole = () => {
         })
             .then(res => res.json())
             .then(data => {
-                console.log(data)
                 if (data.result) {
                     navigate('/')
                     toast.success("Role updated Successfully");

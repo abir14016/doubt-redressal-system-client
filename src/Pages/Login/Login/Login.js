@@ -46,7 +46,7 @@ const Login = () => {
     }
 
     if (token) {
-        console.log(token);
+        // console.log(token);
     }
 
     const onSubmit = data => {

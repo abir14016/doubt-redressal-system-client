@@ -20,7 +20,9 @@ const Register = () => {
     ] = useCreateUserWithEmailAndPassword(auth);
     const [updateProfile] = useUpdateProfile(auth);
     const [token] = UseToken(emailUser);
-    console.log(token);
+    if (token) {
+        // console.log(token)
+    }
 
 
     if (emailUser) {
