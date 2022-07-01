@@ -15,6 +15,7 @@ import UseStudent from '../../../Hooks/UseStudent';
 
 const Header = () => {
     const [user] = useAuthState(auth);
+    console.log('loggedInUser', user);
     const [teacher] = UseTeacher(user);
     const [student] = UseStudent(user);
 

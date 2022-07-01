@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Button, Form } from 'react-bootstrap';
 import { Link, useNavigate } from 'react-router-dom';
 import PageTitle from '../../Shared/PageTitle/PageTitle';
@@ -9,6 +9,7 @@ import Loading from '../../Shared/Loading/Loading';
 import UseToken from '../../../Hooks/UseToken';
 
 const Register = () => {
+    const [profilePicture, setProfilePicture] = useState('');
     const navigate = useNavigate();
     const { register, formState: { errors }, handleSubmit } = useForm();
     const imageStorageKey = '14685597c68261357d28f7ae5a494a2d';
@@ -18,7 +19,6 @@ const Register = () => {
         emailLoading,
         emailError,
     ] = useCreateUserWithEmailAndPassword(auth);
-    const [updateProfile] = useUpdateProfile(auth);
     const [token] = UseToken(emailUser);
     if (token) {
         // console.log(token)
@@ -26,8 +26,10 @@ const Register = () => {
 
 
     if (emailUser) {
+        // console.log('emailUser', emailUser);
         navigate('/updaterole');
     }
+    const [updateProfile] = useUpdateProfile(auth);
     const onSubmit = async (data) => {
         const image = data.image[0];
         const formData = new FormData();
@@ -41,11 +43,15 @@ const Register = () => {
             .then(result => {
                 if (result.success) {
                     const img = result.data.url;
+                    setProfilePicture(img)
                     data.image = img;
+                    // data.photoURL = img;
                 }
-            })
+            });
+        data.profilePicture = profilePicture;
         await createUserWithEmailAndPassword(data.email, data.password);
-        await updateProfile({ displayName: data.name, photoURL: data.image });
+        // console.log(typeof (profilePicture));
+        await updateProfile({ displayName: data.name, photoURL: data.profilePicture });
         window.setTimeout(function () { window.location.reload() }, 500);
     };
 
@@ -137,25 +143,6 @@ const Register = () => {
                             </Form.Text>}
                         </Form.Group>
 
-                        {/* <Form.Group className="mb-3" controlId="formBasicPhoto">
-                            <Form.Label className='fw-bold'>Photo URL</Form.Label>
-                            <Form.Control
-                                className='input-field'
-                                type="text"
-                                placeholder="Your Photo URL"
-                                autoComplete='off'
-                                {...register("photo", {
-                                    required: {
-                                        value: true,
-                                        message: 'photo is required'
-                                    }
-                                })}
-                            />
-                            {errors.photo?.type === 'required' && <Form.Text className="text-danger fw-bold">
-                                {errors.name.message}
-                            </Form.Text>}
-                        </Form.Group> */}
-
                         <Form.Group className="mb-3" controlId="formBasicImage">
                             <Form.Label className='fw-bold'>Photo</Form.Label>
                             <Form.Control
@@ -188,7 +175,6 @@ const Register = () => {
                             </Button>
                         </div>
                     </Form>
-                    {/* <SocialLogin></SocialLogin> */}
                 </div>
             </div>
         </div>
