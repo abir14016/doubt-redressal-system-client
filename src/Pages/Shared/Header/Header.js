@@ -15,7 +15,6 @@ import UseStudent from '../../../Hooks/UseStudent';
 
 const Header = () => {
     const [user] = useAuthState(auth);
-    console.log('loggedInUser', user);
     const [teacher] = UseTeacher(user);
     const [student] = UseStudent(user);
 
@@ -84,6 +83,8 @@ const Header = () => {
                         {
                             (teacher || !user) && <CustomLink className='fw-bold text-dark nav-link' as={Link} to="solvedoubts">Solve Doubts</CustomLink>
                         }
+                        <span className='nav-link fw-bold d-none d-md-none d-lg-inline'>|</span>
+                        <CustomLink className='fw-bold text-dark nav-link' as={Link} to='/about'>About</CustomLink>
                     </Nav>
                     <Nav>
                         {
@@ -107,8 +108,6 @@ const Header = () => {
                                 </OverlayTrigger>
                             </div>
                         }
-
-
                     </Nav>
                 </Navbar.Collapse>
             </Container>
