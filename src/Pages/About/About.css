@@ -1,0 +1,32 @@
+.faq-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.overview-btn {
+  display: flex;
+  justify-content: center;
+}
+.overview-card {
+  display: flex;
+  justify-content: center;
+}
+@media only screen and (max-width: 576px) {
+  .faq-container {
+    display: block;
+  }
+  .thinker {
+    width: 280px;
+  }
+  .q-container {
+    display: flex;
+    justify-content: center;
+  }
+  .thinker-container {
+    display: flex;
+    justify-content: center;
+  }
+  .overview-card {
+    width: 370px;
+  }
+}
